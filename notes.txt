@@ -1,0 +1,40 @@
+### socket event
+socket passes to the callback is an object containg thr information avout the connectin
+->server 
+io.on("connection", (socket)=>{
+    ## if i have a 5 different clients, this function is going to run 5 different time one for each new connection 
+    socket.emit('countUpdated', count, anotherCount)
+});
+
+-> client
+const socket = io();
+
+socket.on('countUpdate', (count, anotherCount)=>{
+
+})
+
+
+
+# what is the difference between io.emit and socket.emit?
+## Broadcasting events
+when we broad cast an event, we send it to every client except the current client
+socket.broadcast.emit();
+
+## disconnecting
+socket.on("disconnect", ()=>{
+    io.emit("message", a user has left)
+})
+
+
+navigator.geolocation.getCurrentPosition does not support promise api
+
+
+## Event acknowlegements 
+acknowlegement is the client getting notified that the event was received and processed and processed 
+acknowlegements are very usuful as they allow the event emitter to make sure that everything actually went as expected
+acknowlegements are optional
+server (emit) -> client (receive) ---acknowlegements--> server
+client (emit) -> server (receive) ---acknowlegements--> client
+
+
+using callback function
